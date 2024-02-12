@@ -8,7 +8,7 @@
 </script>
 
 <div>
-	<h4>{employer} - {title}</h4>
+	<h4>{title} - {employer}</h4>
 	<div>
 		{#if start == end}
 			{start},

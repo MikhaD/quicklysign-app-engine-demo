@@ -2,6 +2,14 @@
 	import Job from "./Job.svelte";
 	import Project from "./Project.svelte";
 	import Skill from "./Skill.svelte";
+
+	async function fetchDatapoints(url: string, count: number) {
+		return await (await fetch(`${url}?count=${count}`)).json();
+	}
+
+	const skills = fetchDatapoints("/api/skills", 14);
+	const projects = fetchDatapoints("/api/projects", 6);
+	const jobs = fetchDatapoints("/api/jobs", 5);
 </script>
 
 <div class="cv">
@@ -10,37 +18,35 @@
 	<hr />
 	<p>Skills are listed in order of how long they have been actively used.</p>
 	<div class="skills">
-		<Skill icon="python.svg" skill="python" time="5 years" />
-		<Skill icon="html-dark.svg" skill="HTML" time="5 years" />
-		<Skill icon="css-dark.svg" skill="CSS" time="5 years" />
-		<Skill icon="javascript.svg" skill="JavaScript" time="4 years" />
-		<Skill icon="git.svg" skill="git" time="4 years" />
-		<Skill icon="vscode.svg" skill="VS Code" time="4 years" />
-		<Skill icon="figma.svg" skill="Figma" time="4 years" />
-		<Skill icon="java.svg" skill="java" time="4 years" />
-		<Skill icon="typescript.svg" skill="TypeScript" time="3 years" />
-		<Skill icon="scss.svg" skill="SCSS" time="3 years" />
-		<Skill icon="linux.svg" skill="linux" time="2 years" />
-		<Skill icon="svelte.svg" skill="svelte" time="2 years" />
-		<Skill icon="github_actions.svg" skill="github actions" time="2 years" />
-		<Skill icon="node.svg" skill="NodeJS" time="1 years" />
+		{#await skills}
+			<p>Loading...</p>
+		{:then skills}
+			{#each skills as skill}
+				<Skill icon={skill.icon} skill={skill.skill} years={skill.years} />
+			{/each}
+		{:catch error}
+			<p>{error.message}</p>
+		{/await}
 	</div>
 	<h3>Professional Experience</h3>
 	<hr />
 	<div class="jobs">
-		<Job
-			employer="University of Cape Town"
-			location="Cape Town South Africa"
-			title="Senior Computer Science Tutor"
-			start="02/2022"
-			end="10/2023"
-			points={[
-				"Ran the Computer Science (CS) hotseat for 6 - 9 hours per week.",
-				"Taught CS concepts to hundreds of students, in groups and individually.",
-				"Learned to quickly spot errors and debug code over people's shoulders.",
-				"Increased student's marks to the point many became tutors themselves.",
-			]}
-		></Job>
+		{#await jobs}
+			<p>Loading...</p>
+		{:then jobs}
+			{#each jobs as job}
+				<Job
+					employer={job.employer}
+					title={job.title}
+					start={job.start}
+					end={job.end}
+					location={job.location}
+					points={job.points}
+				/>
+			{/each}
+		{:catch error}
+			<p>{error.message}</p>
+		{/await}
 	</div>
 	<h3>Education</h3>
 	<hr />
@@ -50,7 +56,7 @@
 			<li>
 				Received a <a
 					href="https://github.com/MikhaD/MikhaD/blob/main/images/certificate_of_merit.png"
-					about="_blank">certificate of merit</a
+					target="_blank">certificate of merit</a
 				> for exceptional performance in Computer Science CSC3003S.
 			</li>
 			<li>Received A grades for all graded computer science courses.</li>
@@ -71,29 +77,24 @@
 	<hr />
 	<p>
 		A more comprehensive list of personal projects can be found at
-		<a href="https://mikha.dev" about="_blank">mikha.dev</a>.
+		<a href="https://mikha.dev" target="_blank">mikha.dev</a>.
 	</p>
 	<div class="projects">
-		<Project
-			title="Wordle+"
-			link="https://mikhad.github.io/wordle/"
-			description="A recreation of the original wordle game written in Svelte using Typescript
-			with additional modes and features such as word definitions and infinite mode."
-			image="https://mikhad.github.io/wordle/img/logo_192x192.png"
-			points={[
-				"Over 2 200 000 page views in 2023 alone from 140 countries.",
-				"Number one google search result for wordle infinite and wordle plus.",
-				"Received over 150 stars on GitHub and 170 forks.",
-				"Dealt with over 50 issues and pull requests.",
-			]}
-		/>
-		<Project
-			title="Discord Bot"
-			link="https://github.com/MikhaD/nfr-bot"
-			description="A Discord bot written in TypeScript using Discord.JS and hosted with Heroku."
-			image="https://d1s4umho1unrgr.cloudfront.net/2023/12/14/07/59/56/aeff76af-3fc2-4e66-a5df-509299439dcf/Vector+5.png?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9kMXM0dW1obzF1bnJnci5jbG91ZGZyb250Lm5ldC8yMDIzLzEyLzE0LzA3LzU5LzU2L2FlZmY3NmFmLTNmYzItNGU2Ni1hNWRmLTUwOTI5OTQzOWRjZi9WZWN0b3IrNS5wbmciLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3MTAzNDI4ODJ9fX1dfQ__&Signature=TH5pJfNbMcPP3qzUHgbg4ngD67BI6hxa-tlaKw2g9hg~3zkcR10ranOPa~kfNdUinvLhdvKBtnGc9RfK-DCv~ny4v6Vz9FnaTercb1G-m1f8Wt4re4Nt14QfDgrWrCCuPErxZW90zMOxnvadzlal2mIYP65Gr~mIBz~AM~OgiebaH6YDr-GPj1~r-qSxcrDFQat7rMCNdSN1AIO5itfc0Ym-konhUwIpwnSEE7Y8zKiJZoG46YWt5KBBSl1~NAFTkmYPSkNaOQsZUbsCi5O~Jzg3HNwsf0gwUmheD3c9lQUP79oAcZqHshoND6WDMokCLLrPexylB40iPR7egWatnQ__&Key-Pair-Id=APKAITFCDZDSWOJU5OZA"
-			points={["Created and maintained a discord bot for a server of over 300 people"]}
-		/>
+		{#await projects}
+			<p>Loading...</p>
+		{:then projects}
+			{#each projects as project}
+				<Project
+					title={project.title}
+					link={project.link}
+					image={project.image}
+					description={project.description}
+					points={project.points}
+				/>
+			{/each}
+		{:catch error}
+			<p>{error.message}</p>
+		{/await}
 	</div>
 	<h3>References</h3>
 	<hr />

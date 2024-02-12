@@ -1,13 +1,19 @@
 <script lang="ts">
 	export let icon: string;
 	export let skill: string;
-	export let time: string;
+	export let years: number;
+
+	function timeText(years: number) {
+		if (years < 1) return `${Math.round(12 * years)} months`;
+		if (years == 1) return "year";
+		return "years";
+	}
 </script>
 
 <div>
 	<img src="https://raw.githubusercontent.com/MikhaD/MikhaD/main/icons/{icon}" alt={skill} />
 	<span class="skill">{skill}</span>
-	<span class="time">({time})</span>
+	<span class="time">({years} {timeText(years)})</span>
 </div>
 
 <style lang="scss">

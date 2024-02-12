@@ -6,20 +6,22 @@
 	export let points: string[] = [];
 </script>
 
-<div class="project">
-	<img src={image} alt="" />
-	<h4><a href={link} about="_blank">{title}</a></h4>
-	<div class="description">{description}</div>
-	<div class="body">
-		{#if points.length > 0}
-			<ul>
-				{#each points as point}
-					<li>{point}</li>
-				{/each}
-			</ul>
-		{/if}
+<a href={link} target="_blank">
+	<div class="project">
+		<img src={image} alt="" />
+		<h4>{title}</h4>
+		<div class="description">{description}</div>
+		<div class="body">
+			{#if points.length > 0}
+				<ul>
+					{#each points as point}
+						<li>{point}</li>
+					{/each}
+				</ul>
+			{/if}
+		</div>
 	</div>
-</div>
+</a>
 
 <style lang="scss">
 	.project {
@@ -27,6 +29,10 @@
 		grid-template-columns: 1fr 6fr;
 		grid-template-rows: auto auto auto;
 		column-gap: 1rem;
+		padding: 1rem;
+		&:hover {
+			background-color: var(--bg-02);
+		}
 	}
 	img {
 		grid-row-start: 1;
@@ -37,9 +43,11 @@
 	}
 	h4 {
 		margin-block: 0 1.5rem;
+		text-decoration: underline;
 	}
 	a {
 		color: var(--fg-00);
+		text-decoration: none;
 	}
 	ul {
 		padding-left: 2rem;
