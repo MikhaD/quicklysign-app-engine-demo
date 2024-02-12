@@ -1,13 +1,13 @@
 <script lang="ts">
-    import Landing from "./lib/Landing.svelte";
-  // import Counter from './lib/Counter.svelte'
+	import Cv from "./lib/CV.svelte";
+	import Landing from "./lib/Landing.svelte";
+	// import Counter from './lib/Counter.svelte'
 </script>
 
-<Landing scrollTarget="#cv"/>
+<Landing scrollTarget="#cv" />
 <section id="cv">
-<h2>Junior Software Developer CV</h2>
+	<Cv />
 </section>
 
 <style>
-
 </style>
