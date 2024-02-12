@@ -1,0 +1,8 @@
+runtime: python39
+
+handlers:
+- url: /client/dist
+  static_dir: /client/dist
+
+- url: /.*
+  script: auto

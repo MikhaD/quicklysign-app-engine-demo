@@ -87,6 +87,13 @@
 				"Dealt with over 50 issues and pull requests.",
 			]}
 		/>
+		<Project
+			title="Discord Bot"
+			link="https://github.com/MikhaD/nfr-bot"
+			description="A Discord bot written in TypeScript using Discord.JS and hosted with Heroku."
+			image="https://d1s4umho1unrgr.cloudfront.net/2023/12/14/07/59/56/aeff76af-3fc2-4e66-a5df-509299439dcf/Vector+5.png?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9kMXM0dW1obzF1bnJnci5jbG91ZGZyb250Lm5ldC8yMDIzLzEyLzE0LzA3LzU5LzU2L2FlZmY3NmFmLTNmYzItNGU2Ni1hNWRmLTUwOTI5OTQzOWRjZi9WZWN0b3IrNS5wbmciLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3MTAzNDI4ODJ9fX1dfQ__&Signature=TH5pJfNbMcPP3qzUHgbg4ngD67BI6hxa-tlaKw2g9hg~3zkcR10ranOPa~kfNdUinvLhdvKBtnGc9RfK-DCv~ny4v6Vz9FnaTercb1G-m1f8Wt4re4Nt14QfDgrWrCCuPErxZW90zMOxnvadzlal2mIYP65Gr~mIBz~AM~OgiebaH6YDr-GPj1~r-qSxcrDFQat7rMCNdSN1AIO5itfc0Ym-konhUwIpwnSEE7Y8zKiJZoG46YWt5KBBSl1~NAFTkmYPSkNaOQsZUbsCi5O~Jzg3HNwsf0gwUmheD3c9lQUP79oAcZqHshoND6WDMokCLLrPexylB40iPR7egWatnQ__&Key-Pair-Id=APKAITFCDZDSWOJU5OZA"
+			points={["Created and maintained a discord bot for a server of over 300 people"]}
+		/>
 	</div>
 	<h3>References</h3>
 	<hr />

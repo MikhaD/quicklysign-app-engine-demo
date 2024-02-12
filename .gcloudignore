@@ -1,0 +1,9 @@
+.git
+env/
+__pycache__/
+client/node_modules/
+client/public/
+client/src/
+client/*.*
+.gitignore
+README.md
